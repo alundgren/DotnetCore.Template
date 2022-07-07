@@ -16,5 +16,14 @@ This is a template for creating a dotnetcore project with
 Created with
 >> dotnet new webapi -minimal
 
-## The SPA
+## The SPA (react version)
 
+https://create-react-app.dev/
+
+Created with:
+
+>> npx create-react-app ui-template --template typescript
+
+Start with:
+
+>> npm run start
