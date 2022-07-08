@@ -16,7 +16,10 @@ This is a template for creating a dotnetcore project with
 Created with
 >> dotnet new webapi -minimal
 
-- AppSetting UiUrl (http://localhost:3000 in dev) used to set CORS headers.
+- Add one of these AppSettings (Url in dev and folder in prod is the intended use)
+- UiUrl (http://localhost:3000 in dev) used to set CORS headers.
+- UiFolder point to a static build of the SPA which is then added as static content. (Point to the react build folder to test embedding on localhost)
+- If neither is present it's assumed that the SPA has been embedded in the standard static content folder during the build.
 
 ## The SPA (react version)
 
