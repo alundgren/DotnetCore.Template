@@ -5,7 +5,23 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+string UiCorsPolicy = "UiApiCalls";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: UiCorsPolicy,
+        policy  =>
+        {
+            policy.AllowAnyHeader()
+                .AllowAnyMethod()
+                .WithOrigins(builder.Configuration.GetValue<string>("UiUrl"))
+                .AllowCredentials();
+        });
+});
+
 var app = builder.Build();
+
+app.UseCors(UiCorsPolicy);
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -21,7 +37,7 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/api/weatherforecast", () =>
 {
     var forecast =  Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast

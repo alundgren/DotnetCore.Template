@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { fetchApi } from "./ApiClient";
 
+interface Forecast {
+  date: string,
+  temperatureC: number,
+  summary: string,
+  temperatureF: number
+}
 function App() {
+  let [foreCasts, setForecasts] = useState<Forecast[] | null>(null)
+
+  useEffect(() => {
+    fetchApi('api/weatherforecast').then(x => {
+      let result = x.json() as Promise<{
+        date: string,
+        temperatureC: number,
+        summary: string,
+        temperatureF: number
+      }[]>
+      result.then(y => setForecasts(y))
+    })
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +38,7 @@ function App() {
         >
           Learn React
         </a>
+        {foreCasts?.map(x => <div key={x.summary}>{x.summary}</div>)}
       </header>
     </div>
   );
