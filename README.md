@@ -38,3 +38,6 @@ Changes to work with the api:
 - Environment files with REACT_APP_API_BASE_URL pointing to the api base url (https://localhost:7222 in dev).
 - ApiClient.ts which just exposes fetchApi that is the same as fetch except you instead of using say fetch('https://localhost:7222/api/some-items') you use fetchApi('api/some-items') and the base url is added.
 
+## Testing prodlike locally
+  >> docker build . -t dotnetcore-template
+  >> docker run -d -p 80:80 dotnetcore-template

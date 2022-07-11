@@ -3,3 +3,5 @@ obj
 build
 .idea
 node_modules
+.git
+Dockerfile
