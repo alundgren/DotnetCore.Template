@@ -41,3 +41,19 @@ Changes to work with the api:
 ## Testing prodlike locally
   >> docker build . -t dotnetcore-template
   >> docker run -d -p 80:80 dotnetcore-template
+
+## Deploying to production (caprover)
+The production site is at https://template.irudd.se
+
+>> caprover deploy -b master -a template -n captain-01
+
+Where
+
+- b: Branch name to deploy from
+- a: Name of the caprover app
+- n: Caprover machine name
+
+Auto deploy from github using hooks should also be possible:
+
+https://caprover.com/docs/deployment-methods.html#automatic-deploy-using-github-bitbucket-and-etc
+
