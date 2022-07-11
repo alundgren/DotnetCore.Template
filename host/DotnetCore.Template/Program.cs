@@ -1,8 +1,8 @@
 var uiFolder = WebApplication.CreateBuilder(args).Configuration.GetValue<string>("UiFolder");
-var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
+var builder = uiFolder != null ? WebApplication.CreateBuilder(new WebApplicationOptions()
 {
     WebRootPath = uiFolder
-});
+}) : WebApplication.CreateBuilder();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
